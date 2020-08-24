@@ -177,6 +177,10 @@ TODO: Current steps are lengthy. Indexing and query interface should be combined
     We recommend using a fresh identfier for the entities-labels different than
     the used for the original KG, e.g. `http://yago-expr.org.labels` (where `.labels` was appended).
 
+## Resources
+
+* Experimental data can be dowloaded from https://resources.mpi-inf.mpg.de/d5/excut/excut_datasets.zip
+* Technical Report: https://resources.mpi-inf.mpg.de/d5/excut/ExCut_TR.pdf
 
 ## Dev Notes
 
@@ -189,6 +193,7 @@ These are some important modules while developing in ExCut:
     * Module `.explanations_metrics` Aggregating Explanations quality
     * Module `.eval_utils` Some useful scripts for evaluation such as exporting to csv and ploting.
     
+
 
 
 
