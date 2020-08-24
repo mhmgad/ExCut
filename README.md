@@ -180,7 +180,8 @@ TODO: Current steps are lengthy. Indexing and query interface should be combined
 ## Resources
 
 * Experimental data can be dowloaded from https://resources.mpi-inf.mpg.de/d5/excut/excut_datasets.zip
-* Technical Report: https://resources.mpi-inf.mpg.de/d5/excut/ExCut_TR.pdf
+<!--* Technical Report: https://resources.mpi-inf.mpg.de/d5/excut/ExCut_TR.pdf -->
+* Technical Report: https://mpi-inf.mpg.de/~gadelrab/downloads/ExCut/ExCut_TR.pdf
 
 ## Dev Notes
 
