@@ -31,10 +31,6 @@ Easy way to run Virtouso is using docker container as provided in `docker-compos
 2. Edit datavolume location in `docker-compose.yml` file (Optional: if you would like to presest the KGs)
 3. Run command: `docker-compose run -d --service-ports  vos`
 
-Or otherwise you can use `-index memory` while runing the code where all data will be indexed in the memory. Note that mining rules in memory 
-is not efficient and not well tested.
-
-
 
 ## Command Line Run
 
@@ -44,70 +40,96 @@ is not efficient and not well tested.
 Parameters are `:
 
 ```
-usage: cli.py [-h] -t TARGET_ENTITIES -kg KG [-Skg] [-e EMBEDDING_DIR]
-              [-en ENCODING_DICT_DIR] [-ed EMBEDDING_ADAPTER]
-              [-o OUTPUT_FOLDER] [-host HOST] [-index INDEX] [-index_d]
-              [-steps] [-id KG_IDENTIFIER] [-em EMBEDDING_METHOD]
-              [-expl_cc EXPL_C_COVERAGE] [-dp DATA_PREFIX]
-              [-ud UPDATE_DATA_MODE] [-uc update_context_depth]
-              [-um UPDATE_MODE] [-ulr UPDATE_LEARNING_RATE]
-              [-pr_q PREDICTION_MIN_Q] [-comm COMMENT] [-q OBJECTIVE_QUALITY]
-              [-k NUMBER_OF_CLUSTERS]
+usage: python -m cli.main.py [-h] [-t TARGET_ENTITIES] [-kg KG] [-o OUTPUT_FOLDER] [-steps]
+               [-itrs MAX_ITERATIONS] [-e EMBEDDING_DIR] [-Skg]
+               [-en ENCODING_DICT_DIR] [-ed EMBEDDING_ADAPTER]
+               [-em EMBEDDING_METHOD] [-host HOST] [-index INDEX] [-index_d]
+               [-id KG_IDENTIFIER] [-dp DATA_PREFIX] [-dsafe]
+               [-q OBJECTIVE_QUALITY] [-expl_cc EXPL_C_COVERAGE]
+               [-pr_q PREDICTION_MIN_Q] [-us UPDATE_STRATEGY]
+               [-um UPDATE_MODE] [-ud UPDATE_DATA_MODE]
+               [-uc UPDATE_CONTEXT_DEPTH] [-ucf CONTEXT_FILEPATH]
+               [-uh UPDATE_TRIPLES_HISTORY] [-ulr UPDATE_LEARNING_RATE]
+               [-c CLUSTERING_METHOD] [-k NUMBER_OF_CLUSTERS]
+               [-cd CLUSTERING_DISTANCE] [-cp CUT_PROB] [-comm COMMENT]
+               [-rs SEED] [-ll MAX_LENGTH] [-ls LANGUAGE_STRUCTURE]
 
 optional arguments:
   -h, --help            show this help message and exit
   -t TARGET_ENTITIES, --target_entities TARGET_ENTITIES
                         Target entities file
   -kg KG, --kg KG       Triple format file <s> <p> <o>
-  -Skg, --sub_kg        Only use subset of the KG to train the base embedding
+  -o OUTPUT_FOLDER, --output_folder OUTPUT_FOLDER
+                        Folder to write output to
+  -steps, --save_steps  Save intermediate results
+  -itrs MAX_ITERATIONS, --max_iterations MAX_ITERATIONS
+                        Maximum iterations
   -e EMBEDDING_DIR, --embedding_dir EMBEDDING_DIR
                         Folder of initial embedding
+  -Skg, --sub_kg        Only use subset of the KG to train the base embedding
   -en ENCODING_DICT_DIR, --encoding_dict_dir ENCODING_DICT_DIR
                         Folder containing the encoding of the KG
   -ed EMBEDDING_ADAPTER, --embedding_adapter EMBEDDING_ADAPTER
                         Adapter used for embedding
-  -o OUTPUT_FOLDER, --output_folder OUTPUT_FOLDER
-                        Folder to write output to
+  -em EMBEDDING_METHOD, --embedding_method EMBEDDING_METHOD
+                        Embedding method
   -host HOST, --host HOST
                         SPARQL endpoint host and ip host_ip:port
   -index INDEX, --index INDEX
                         Index input KG (memory | remote)
   -index_d, --drop_index
                         Drop old index
-  -steps, --save_steps  Save intermediate results
   -id KG_IDENTIFIER, --kg_identifier KG_IDENTIFIER
                         KG identifier url , default
                         http://exp-<start_time>.org
-  -em EMBEDDING_METHOD, --embedding_method EMBEDDING_METHOD
-                        Embedding method
-  -expl_cc EXPL_C_COVERAGE, --expl_c_coverage EXPL_C_COVERAGE
-                        Minimum per cluster explanation coverage ratio
   -dp DATA_PREFIX, --data_prefix DATA_PREFIX
                         Data prefix
-  -ud UPDATE_DATA_MODE, --update_data_mode UPDATE_DATA_MODE
-                        Embedding Adaptation Data Mode
-  -uc update_context_depth, --update_context_depth update_context_depth
-                        Subgraph_depth
-  -um UPDATE_MODE, --update_mode UPDATE_MODE
-                        Embedding Update Mode
-  -ulr UPDATE_LEARNING_RATE, --update_learning_rate UPDATE_LEARNING_RATE
-                        Update Learning Rate
-  -pr_q PREDICTION_MIN_Q, --prediction_min_q PREDICTION_MIN_Q
-                        Minimum prediction quality
-  -comm COMMENT, --comment COMMENT
-                        just simple comment to be stored
+  -dsafe, --data_safe_urls
+                        Fix the urls (id) of the entities
   -q OBJECTIVE_QUALITY, --objective_quality OBJECTIVE_QUALITY
                         Object quality function
+  -expl_cc EXPL_C_COVERAGE, --expl_c_coverage EXPL_C_COVERAGE
+                        Minimum per cluster explanation coverage ratio
+  -pr_q PREDICTION_MIN_Q, --prediction_min_q PREDICTION_MIN_Q
+                        Minimum prediction quality
+  -us UPDATE_STRATEGY, --update_strategy UPDATE_STRATEGY
+                        Strategy for update
+  -um UPDATE_MODE, --update_mode UPDATE_MODE
+                        Embedding Update Mode
+  -ud UPDATE_DATA_MODE, --update_data_mode UPDATE_DATA_MODE
+                        Embedding Adaptation Data Mode
+  -uc UPDATE_CONTEXT_DEPTH, --update_context_depth UPDATE_CONTEXT_DEPTH
+                        The depth of the Subgraph surrounding target entities
+  -ucf CONTEXT_FILEPATH, --context_filepath CONTEXT_FILEPATH
+                        File with context triples for the target entities
+  -uh UPDATE_TRIPLES_HISTORY, --update_triples_history UPDATE_TRIPLES_HISTORY
+                        Number iterations feedback triples to considered in
+                        the progressive update
+  -ulr UPDATE_LEARNING_RATE, --update_learning_rate UPDATE_LEARNING_RATE
+                        Update Learning Rate
+  -c CLUSTERING_METHOD, --clustering_method CLUSTERING_METHOD
+                        Clustering Method
   -k NUMBER_OF_CLUSTERS, --number_of_clusters NUMBER_OF_CLUSTERS
                         Number of clusters
+  -cd CLUSTERING_DISTANCE, --clustering_distance CLUSTERING_DISTANCE
+                        Clustering Distance Metric
+  -cp CUT_PROB, --cut_prob CUT_PROB
+                        Cutting Probability
+  -comm COMMENT, --comment COMMENT
+                        just simple comment to be stored
+  -rs SEED, --seed SEED
+                        Randomization Seed for experiments
+  -ll MAX_LENGTH, --max_length MAX_LENGTH
+                        maximum length of description
+  -ls LANGUAGE_STRUCTURE, --language_structure LANGUAGE_STRUCTURE
+                        Structure of the learned description
+
 
 ```
 
 ## Invoking Explanation Mining via Code
 
 This explains code in example file: `examples/simple_clustering_pipeline.py`
-
-TODO: Current steps are lengthy. Indexing and query interface should be combined in one interface.
 
 1. _Load the KG triples_ :
     ```python
@@ -152,16 +174,17 @@ TODO: Current steps are lengthy. Indexing and query interface should be combined
    #  and interfac to query the whole kg triples and the labels as well.
     
    from kg.kg_indexing import Indexer
-   from kg.kg_query_interface import EndPointKGQueryInterface
+   from kg.kg_query_interface_extended import EndPointKGQueryInterfaceExtended
    
-   labels_indexer=Indexer(store='remote', endpoint='<vos endpoint url>', identifier='http://yago-expr.org.labels')
-   query_interface=EndPointKGQueryInterface( sparql_endpoint='<vos endpoint url>', 
-                   identifiers=['http://yago-expr.org','http://yago-expr.org.labels', 'http://yago-expr.org.extension'])
+   query_interface=EndPointKGQueryInterfaceExtended( sparql_endpoint='<vos endpoint url>', 
+                   identifiers=['http://yago-expr.org', 'http://yago-expr.org.extension'],
+                   labels_identifier='http://yago-expr.org.labels'
+                   )
 
    #b) Create Explaning Engine 
 
-   from explanations_mining.explaining_engines import PathBasedClustersExplainer
-   explaining_engine= PathBasedClustersExplainer(query_interface, labels_indexer=labels_indexer,
+   from explanations_mining.explaining_engines_extended import PathBasedClustersExplainerExtended
+   explaining_engine= PathBasedClustersExplainerExtended(query_interface,
                                                    quality_method=objective_measure, min_coverage=0.5)
    
    #c) explain the clusters
@@ -173,7 +196,7 @@ TODO: Current steps are lengthy. Indexing and query interface should be combined
    #evalaute rules quality
    explm.aggregate_explanations_quality(explanations_dict)
    ```
-   Note: `QueryInterface` is the interface to the indexed KG triples and the labels of the target entities. 
+   Note: `QueryInterfaceExtended` is the interface to the indexed KG triples and the labels of the target entities. 
     It requires  as an input the identifiers of the KG to mine over. It is possible that a single KG can be stored in 
     several subgraphs each with a different identifier. Then all should be listed as shown in the above code,
      
