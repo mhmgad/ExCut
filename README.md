@@ -1,6 +1,9 @@
 # ExCut: Explainable Embedding-based Clustering for Knowledge Graphs
 
-Clustering KG Entities to form new Concepts (Types).
+Computing robust explainable clusters for a set of entities. Clusters' explanations are produced based on the facts surrounding these entities in the KG. Furthermore, ExCut reuses the explanations to enhance the clustering quality.
+
+Technical and experimental details can be found in ExCut's Technical Report: https://mpi-inf.mpg.de/~gadelrab/downloads/ExCut/ExCut_TR.pdf
+
 
 
 ## Requirements
@@ -194,7 +197,13 @@ These are some important modules while developing in ExCut:
     * Module `.explanations_metrics` Aggregating Explanations quality
     * Module `.eval_utils` Some useful scripts for evaluation such as exporting to csv and ploting.
     
+## Contact
 
+Please Contact gadelrab [at] mpi-inf.mpg.de for further questions
+
+## Lisence
+
+ExCut is open-sourced under the AGPL-3.0 license. See the [LICENSE](LICENSE) file for details.
 
 
 
