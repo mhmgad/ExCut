@@ -2,7 +2,7 @@
 
 Computing robust explainable clusters for a set of entities. Clusters' explanations are produced based on the facts surrounding these entities in the KG. Furthermore, ExCut reuses the explanations to enhance the clustering quality.
 
-Technical and experimental details can be found in ExCut's Technical Report: https://mpi-inf.mpg.de/~gadelrab/downloads/ExCut/ExCut_TR.pdf
+Technical and experimental details can be found in ExCut's Technical Report: https://resources.mpi-inf.mpg.de/d5/excut/ExCut_TR.pdf
 
 
 
@@ -207,7 +207,7 @@ This explains code in example file: `examples/simple_clustering_pipeline.py`
 
 * Experimental data can be dowloaded from https://resources.mpi-inf.mpg.de/d5/excut/excut_datasets.zip
 <!--* Technical Report: https://resources.mpi-inf.mpg.de/d5/excut/ExCut_TR.pdf -->
-* Technical Report: https://mpi-inf.mpg.de/~gadelrab/downloads/ExCut/ExCut_TR.pdf
+* Technical Report: https://resources.mpi-inf.mpg.de/d5/excut/ExCut_TR.pdf
 
 ## Dev Notes
 
