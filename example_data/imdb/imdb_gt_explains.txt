@@ -1,0 +1,14 @@
+(?x,http://exp-data.org/resultLabel,http://exp-data.org/actor)	<=	(?x,http://exp-data.org/workedunder,?x1)	c_support: 236	c_coverage: 1.0000	n_coverage: 1.0000	x_coverage: 1.0000	x2_coverage: 1.0000
+(?x,http://exp-data.org/resultLabel,http://exp-data.org/actor)	<=	(?x,http://exp-data.org/workedunder,?x1), (?x2,http://exp-data.org/movie,?x1)	c_support: 236	c_coverage: 1.0000	n_coverage: 1.0000	x_coverage: 1.0000	x2_coverage: 1.0000
+(?x,http://exp-data.org/resultLabel,http://exp-data.org/actor)	<=	(?x,http://exp-data.org/workedunder,?x1), (?x1,http://exp-data.org/type,http://exp-data.org/person)	c_support: 236	c_coverage: 1.0000	n_coverage: 1.0000	x_coverage: 1.0000	x2_coverage: 1.0000
+(?x,http://exp-data.org/resultLabel,http://exp-data.org/actor)	<=	(?x,http://exp-data.org/workedunder,?x1), (?x1,http://exp-data.org/genre,http://exp-data.org/adrama)	c_support: 147	c_coverage: 0.6229	n_coverage: 1.0000	x_coverage: 0.6229	x2_coverage: 0.6229
+(?x,http://exp-data.org/resultLabel,http://exp-data.org/actor)	<=	(?x1,http://exp-data.org/movie,?x)	c_support: 236	c_coverage: 1.0000	n_coverage: 0.5000	x_coverage: 0	x2_coverage: 0.0000
+
+(?x,http://exp-data.org/resultLabel,http://exp-data.org/director)	<=	(?x1,http://exp-data.org/workedunder,?x)	c_support: 32	c_coverage: 1.0000	n_coverage: 1.0000	x_coverage: 1.0000	x2_coverage: 1.0000
+(?x,http://exp-data.org/resultLabel,http://exp-data.org/director)	<=	(?x1,http://exp-data.org/workedunder,?x), (?x2,http://exp-data.org/movie,?x1)	c_support: 32	c_coverage: 1.0000	n_coverage: 1.0000	x_coverage: 1.0000	x2_coverage: 1.0000
+(?x,http://exp-data.org/resultLabel,http://exp-data.org/director)	<=	(?x1,http://exp-data.org/workedunder,?x), (?x1,http://exp-data.org/type,http://exp-data.org/gender_female)	c_support: 32	c_coverage: 1.0000	n_coverage: 1.0000	x_coverage: 1.0000	x2_coverage: 1.0000
+(?x,http://exp-data.org/resultLabel,http://exp-data.org/director)	<=	(?x1,http://exp-data.org/workedunder,?x), (?x1,http://exp-data.org/type,http://exp-data.org/person)	c_support: 32	c_coverage: 1.0000	n_coverage: 1.0000	x_coverage: 1.0000	x2_coverage: 1.0000
+(?x,http://exp-data.org/resultLabel,http://exp-data.org/director)	<=	(?x1,http://exp-data.org/workedunder,?x), (?x1,http://exp-data.org/type,http://exp-data.org/gender_male)	c_support: 32	c_coverage: 1.0000	n_coverage: 1.0000	x_coverage: 1.0000	x2_coverage: 1.0000
+(?x,http://exp-data.org/resultLabel,http://exp-data.org/director)	<=	(?x,http://exp-data.org/genre,?x1), (?x1,http://exp-data.org/type,http://exp-data.org/movie)	c_support: 24	c_coverage: 0.7500	n_coverage: 1.0000	x_coverage: 0.7500	x2_coverage: 0.7500
+(?x,http://exp-data.org/resultLabel,http://exp-data.org/director)	<=	(?x1,http://exp-data.org/movie,?x)	c_support: 32	c_coverage: 1.0000	n_coverage: 0.5000	x_coverage: 0	x2_coverage: 0.0000
+

@@ -1,0 +1,4 @@
+The output of running  imdb example (from project home directory) will appear in this folder
+python -m python -m  examples.clustering_imdb 
+
+

@@ -1,0 +1,2 @@
+itr_num,ACC,ARI,HMS,NMI,PUR,SS,c_coverage@1,x_coverage@1,wr_acc@1,n_coverage@1,tfidf@1,clusters_nums,clusters_with_any_explans,clusters_with_accepted_explans,entities_with_prediction,predictions_quality,curr_vs_base,curr_vs_prv,clusters_sizes
+,0.34328358208955223,0.029683246022054063,,0.06588390340477833,,,0.9056818181818181,0.09457070707070708,0.029728224548897307,0.26910423055951027,1.1783192119820376,,,,,,,,
