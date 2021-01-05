@@ -7,3 +7,4 @@ vos:
 #    - /GW/D5data-11/gadelrab/virtuoso/database:/data
   ports:
     - "8890:8890"
+

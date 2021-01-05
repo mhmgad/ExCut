@@ -230,6 +230,8 @@ if __name__ == '__main__':
     #     evaluate_iterations_from_files('/scratch/GW/pool0/gadelrab/ExDEC/data/%s.tsv' % dataset_name, fold,
     #                                    save=True, dataset_name=dataset_name)
 
-    plot_from_file('/scratch/GW/pool0/gadelrab/ExDEC/plots/hep_iters_stats.csv', '/scratch/GW/pool0/gadelrab/ExDEC/plots/hep_plot_3.pdf')
-    plot_from_file('/scratch/GW/pool0/gadelrab/ExDEC/plots/imdb_iters_stats.csv', '/scratch/GW/pool0/gadelrab/ExDEC/plots/imdb_plot_3.pdf')
-    plot_from_file('/scratch/GW/pool0/gadelrab/ExDEC/plots/yago_iters_stats.csv', '/scratch/GW/pool0/gadelrab/ExDEC/plots/yago_plot_3.pdf')
+    # plot_from_file('/scratch/GW/pool0/gadelrab/ExDEC/plots/hep_iters_stats.csv', '/scratch/GW/pool0/gadelrab/ExDEC/plots/hep_plot_3.pdf')
+    # plot_from_file('/scratch/GW/pool0/gadelrab/ExDEC/plots/imdb_iters_stats.csv', '/scratch/GW/pool0/gadelrab/ExDEC/plots/imdb_plot_3.pdf')
+    # plot_from_file('/scratch/GW/pool0/gadelrab/ExDEC/plots/yago_iters_stats.csv', '/scratch/GW/pool0/gadelrab/ExDEC/plots/yago_plot_3.pdf')
+    plot_from_file('/scratch/GW/pool0/gadelrab/ExDEC/plots/lubm2_iters_stats.csv',
+                   '/scratch/GW/pool0/gadelrab/ExDEC/plots/lubm2_plot_3.pdf')

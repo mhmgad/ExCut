@@ -1,0 +1,17 @@
+name: excut-gpu
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - scikit-learn
+  - tqdm
+  - pandas
+  - sparqlwrapper
+  - rdflib=4.2.2
+  - matplotlib
+  - tensorflow-gpu=1.14
+  - keras-gpu=2.3.1
+  - pip=19.1.1
+  - pip:
+    - ampligraph==1.3.0

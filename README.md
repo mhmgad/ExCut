@@ -9,7 +9,7 @@ Technical and experimental details can be found in ExCut's Technical Report: htt
 ## Requirements
 
 ### 1) Dependencies
-Folder env_files contain dump from the required depenedencies using pip and conda
+Folder [envs] contain dump from the required dependencies using pip and conda. We provide two dumps `excut_env.yml` with Tensorflow CPU usage and `excut-gpu_env.yml` with Tensorflow-gpu 
 
 1. Install the dependencies using conda [1] or pip [2] to your python env (We recommend creating a new one) before running.
 2. Activate the env (if it is not the default) before running the code. [3]
