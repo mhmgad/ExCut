@@ -9,6 +9,7 @@ dependencies:
   - sparqlwrapper
   - rdflib=4.2.2
   - matplotlib
+  - tensorflow=1.13.1
   - keras
   - pip=19.1.1
   - pip:
