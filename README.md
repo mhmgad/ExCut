@@ -37,7 +37,7 @@ Easy way to run Virtouso is using docker container as provided in `docker-compos
 
 `cli/main.py` file is the main entrance of the explainable clustering approach. Files `run_yago.sh` shows and example code to run: 
 
-Parameters are `:
+Parameters are:
 
 ```
 usage: python -m cli.main.py [-h] [-t TARGET_ENTITIES] [-kg KG] [-o OUTPUT_FOLDER] [-steps]
@@ -224,10 +224,9 @@ These are some important modules while developing in ExCut:
 
 Please Contact gadelrab [at] mpi-inf.mpg.de for further questions
 
-## Lisence
+## License
 
-ExCut is open-sourced under the AGPL-3.0 license. See the [LICENSE](LICENSE) file for details.
-
+ExCut is open-sourced under the Apache 2.0 license. See the [LICENSE](LICENSE) file for details.
 
 
 
