@@ -11,7 +11,7 @@ import numpy as np
 from sklearn.cluster import KMeans, DBSCAN, SpectralClustering, AgglomerativeClustering
 from sklearn.metrics import pairwise_distances
 
-from misc.multicut import dump_scores
+#from misc.multicut import dump_scores
 
 
 # clusteringMethods=dict()
@@ -19,6 +19,15 @@ from misc.multicut import dump_scores
 # def register(cl,name):
 #     print('registering %s'%name)
 #     clusteringMethods[name]=cl
+
+def dump_scores(distance_scores, method, sim_filepath):
+    # sim_filepath = out_dir + "/data.tsv.sim_" + method
+    with open(sim_filepath, 'w') as out_file:
+        out_file.write(str(distance_scores.shape[0]) + '\n')
+        for i in range(distance_scores.shape[0]):
+            for j in range(i + 1, distance_scores.shape[1]):
+                out_file.write(str(i) + '\t' + str(j) + '\t' + str(distance_scores[i][j]) + '\n')
+    return sim_filepath
 
 
 class ClusteringMethod:
