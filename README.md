@@ -1,35 +1,54 @@
-# ExCut: Explainable Embedding-based Clustering for Knowledge Graphs
+# ExCut: Explainable Clustering for Knowledge Graph Entities
 
 Computing robust explainable clusters for a set of entities. Clusters' explanations are produced based on the facts surrounding these entities in the KG. Furthermore, ExCut reuses the explanations to enhance the clustering quality.
 
-Technical and experimental details can be found in ExCut's Technical Report: https://resources.mpi-inf.mpg.de/d5/excut/ExCut_TR.pdf
+## Build
+
+### 1) Environment
+Folder [envs] contain dump from the required dependencies using pip and conda. We provide two dumps `excut_env.yml` with Tensorflow CPU usage and `excut-gpu_env.yml` with Tensorflow-gpu
+
+1. Install env
+   
+    `conda env create -f excut_env.yml`
+   
+   or if GPU is required 
+   
+    `conda env create -f excut-gpu_env.yml`
 
 
+2. Activate the env (if it is not the default) before running the code:
 
-## Requirements
-
-### 1) Dependencies
-Folder [envs] contain dump from the required dependencies using pip and conda. We provide two dumps `excut_env.yml` with Tensorflow CPU usage and `excut-gpu_env.yml` with Tensorflow-gpu 
-
-1. Install the dependencies using conda [1] or pip [2] to your python env (We recommend creating a new one) before running.
-2. Activate the env (if it is not the default) before running the code. [3]
   `conda activate <env>`
+   
+### 2) Dependency Tools 
 
-[1] https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
-
-[2] https://packaging.python.org/tutorials/installing-packages/
-
-[3] https://docs.python.org/3/tutorial/venv.html
-
-
-### 2) External Libraries
-
-We are using Virtouso as backend triple store in case of big KG. We access it through the sparql end point. 
+A triple store with sparql endpoint is required. For that we used [Virtouso 7.2 Community](https://github.com/openlink/virtuoso-opensource/releases).
 Easy way to run Virtouso is using docker container as provided in `docker-compose.yml` as follows:
 
-1. `cd docker`
-2. Edit datavolume location in `docker-compose.yml` file (Optional: if you would like to presest the KGs)
-3. Run command: `docker-compose run -d --service-ports  vos`
+1. Edit data-volume location in `docker-compose.yml` file (Optional: if you would like to persist the KGs)
+2. Run command: `docker compose up`
+
+Alternatively, The tool can be downloaded from [Virtouso 7.2 Community](https://github.com/openlink/virtuoso-opensource/releases).
+Then 'SPARQL_UPDATE' permission should be assigned to the SPARQL endpoint. (Details can be found here!)[https://stackoverflow.com/questions/40897307/authentication-for-virtuoso-http-post-put]
+
+
+
+### 3) Extrnal clustering algorithm
+
+ExCut supports Multicut algorithm which is implemented in C++ and hosted as a binary inside 
+`excut/excut/clustering/multicut/` folder. If it will be used the correct permissions, should be granted by running 
+
+    chomd +x excut/excut/clustering/multicut/find-clustering
+
+Note: this binary might not work under macos
+
+### Run the tests
+
+Run the tests via
+
+    pytest ./tests
+
+
 
 
 ## Command Line Run
@@ -133,7 +152,7 @@ This explains code in example file: `examples/simple_clustering_pipeline.py`
 
 1. _Load the KG triples_ :
     ```python
-   from kg.kg_triples_source import load_from_file
+   from excut.kg.kg_triples_source import load_from_file
     
    kg_triples=load_from_file('<file_path>')
     ```
@@ -145,7 +164,7 @@ This explains code in example file: `examples/simple_clustering_pipeline.py`
     Current Explanation mining requires the KG triples to be indexed eitehr in remote sparql endpoint (eg. Virtouso) 
     or in memory.
      ```python
-   from kg.kg_indexing import Indexer
+   from excut.kg.kg_indexing import Indexer
     
    kg_indexer=Indexer(store='remote', endpoint='<vos endpoint url>', identifier='http://yago-expr.org')
    kg_indexer.index_triples(kg_triples, drop_old=False)
@@ -162,7 +181,7 @@ This explains code in example file: `examples/simple_clustering_pipeline.py`
      
     Example:
     ```python
-   from clustering.target_entities import load_from_file
+   from excut.clustering.target_entities import load_from_file
     
    clustering_results_as_triples=load_from_file('<file_path>')
     ```
@@ -173,8 +192,8 @@ This explains code in example file: `examples/simple_clustering_pipeline.py`
    #a) The explaining engine requires creating two interfaces: interface to index labels,
    #  and interfac to query the whole kg triples and the labels as well.
     
-   from kg.kg_indexing import Indexer
-   from kg.kg_query_interface_extended import EndPointKGQueryInterfaceExtended
+   from excut.kg.kg_indexing import Indexer
+   from excut.kg.kg_query_interface_extended import EndPointKGQueryInterfaceExtended
    
    query_interface=EndPointKGQueryInterfaceExtended( sparql_endpoint='<vos endpoint url>', 
                    identifiers=['http://yago-expr.org', 'http://yago-expr.org.extension'],
@@ -183,7 +202,7 @@ This explains code in example file: `examples/simple_clustering_pipeline.py`
 
    #b) Create Explaning Engine 
 
-   from explanations_mining.explaining_engines_extended import PathBasedClustersExplainerExtended
+   from excut.explanations_mining.explaining_engines_extended import PathBasedClustersExplainerExtended
    explaining_engine= PathBasedClustersExplainerExtended(query_interface,
                                                    quality_method=objective_measure, min_coverage=0.5)
    
@@ -192,7 +211,7 @@ This explains code in example file: `examples/simple_clustering_pipeline.py`
 
    
    #d) compute aggregate quality of the explanations
-   import evaluation.explanations_metrics as explm
+   import excut.evaluation.explanations_metrics as explm
    #evalaute rules quality
    explm.aggregate_explanations_quality(explanations_dict)
    ```
@@ -202,12 +221,7 @@ This explains code in example file: `examples/simple_clustering_pipeline.py`
      
     We recommend using a fresh identfier for the entities-labels different than
     the used for the original KG, e.g. `http://yago-expr.org.labels` (where `.labels` was appended).
-
-## Resources
-
-* Experimental data can be dowloaded from https://resources.mpi-inf.mpg.de/d5/excut/excut_datasets.zip
-<!--* Technical Report: https://resources.mpi-inf.mpg.de/d5/excut/ExCut_TR.pdf -->
-* Technical Report: https://resources.mpi-inf.mpg.de/d5/excut/ExCut_TR.pdf
+   
 
 ## Dev Notes
 
@@ -220,13 +234,45 @@ These are some important modules while developing in ExCut:
     * Module `.explanations_metrics` Aggregating Explanations quality
     * Module `.eval_utils` Some useful scripts for evaluation such as exporting to csv and ploting.
     
-## Contact
 
-Please Contact gadelrab [at] mpi-inf.mpg.de for further questions
+## Contributing
 
-## License
+You are very welcome to contribute! Just open a Pull Request.
 
-ExCut is open-sourced under the Apache 2.0 license. See the [LICENSE](LICENSE) file for details.
+### Pre-Commit Hooks
+
+We use [pre-commit](https://pre-commit.com/) for "identifying simple issues before
+submission to code review". See [here](https://hostthedocs-bcai.de.bosch.com/sample/latest/pages/localdevelopment.html#pre-commit-hooks)
+for more.
+
+To install the hooks from `.pre-commit-config.yaml`, you once have to run
+
+    pre-commit install
+
+
+## About
+
+### Maintainers
+
+[Mohamed Gad-Elrab](mailto:mohamed.gad-elrab@de.bosch.com)
+
+### Contributors
+
+### License
+
+Copyright (c) 2020 Robert Bosch GmbH and its subsidiaries.
+
+
+
+
+## Note
+
+This is based on Python Sample Project of BCAI’s
+[Software Quality Initiative](https://inside-docupedia.bosch.com/confluence/display/BSE/Software+Quality+Initiative).
+It is an adaption of the Python Packaging Authority's (PyPA)
+[Sample Project](https://github.com/pypa/sampleproject), and prepared to use BCAI's software development infrastructure.
+
+
 
 
 

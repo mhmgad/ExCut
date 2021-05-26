@@ -1,28 +1,23 @@
 import os
 import time
 
-import csv
 from itertools import chain
 
 import numpy as np
-from ampligraph.latent_features import TransE
-from ampligraph.utils import save_model
 from sklearn.cluster import KMeans
 
-import evaluation.clustering_metrics as clms
-import evaluation.explanations_metrics as explms
-from embedding.ampligraph_extend.model_utils import restore_model
-from evaluation import eval_utils
-from explanations_mining.explaining_engines import PathBasedClustersExplainer
-from explanations_mining.explaining_engines_extended import PathBasedClustersExplainerExtended
-from explanations_mining.simple_miner.description_miner_extended import ExplanationStructure
-from feedback.rulebased_deduction.deduction_engine_extended import SparqlBasedDeductionEngineExtended
-from kg.kg_indexing import Indexer
-from kg.kg_query_interface_extended import EndPointKGQueryInterfaceExtended
-import kg.kg_triples_source as kgts
-import clustering.target_entities as tes
-from clustering.target_entities import EntitiesLabelsFile, EntityLabelsToTriples
-from utils.output_utils import write_triples
+import excut.evaluation.clustering_metrics as clms
+import excut.evaluation.explanations_metrics as explms
+from excut.embedding.ampligraph_extend.model_utils import restore_model
+from excut.evaluation import eval_utils
+from excut.explanations_mining.explaining_engines_extended import PathBasedClustersExplainerExtended
+from excut.explanations_mining.simple_miner.description_miner_extended import ExplanationStructure
+from excut.feedback.rulebased_deduction.deduction_engine_extended import SparqlBasedDeductionEngineExtended
+from excut.kg.kg_query_interface_extended import EndPointKGQueryInterfaceExtended
+import excut.kg.kg_triples_source as kgts
+import excut.clustering.target_entities as tes
+from excut.clustering.target_entities import EntitiesLabelsFile, EntityLabelsToTriples
+from excut.utils.output_utils import write_triples
 
 number_of_clusters = 5
 #
