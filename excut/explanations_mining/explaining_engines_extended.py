@@ -13,6 +13,7 @@ from excut.explanations_mining.descriptions import top
 from excut.kg.utils.Constants import DEFUALT_AUX_RELATION
 
 
+
 class PathBasedClustersExplainerExtended(ClustersExplainer):
 
     def __init__(self, kg_query_interface: KGQueryInterfaceExtended, labels_indexer=None, relation=DEFUALT_AUX_RELATION,

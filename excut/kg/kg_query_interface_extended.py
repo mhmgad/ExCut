@@ -2,6 +2,8 @@
 This module contains query execution engines used to mine rules.
 
 """
+import requests
+
 from excut.utils.logging import logger
 from itertools import chain, combinations
 
@@ -323,9 +325,10 @@ class EndPointKGQueryInterfaceExtended(KGQueryInterfaceExtended):
     def __init__(self, endpoint, identifiers=None, labels_identifier=None):
         super().__init__(identifiers, labels_identifier)
         self.endpoint = endpoint
-        self.sparql = SPARQLWrapper(endpoint)
+        # self.sparql = SPARQLWrapper(endpoint)
+        # self.sparql.setUseKeepAlive()
+        self.session = requests.Session()
         self.identifiers = identifiers if identifiers else []
-
         self.labels_graph = Graph(store='SPARQLUpdateStore', identifier=labels_identifier)
         print(self.endpoint)
         self.labels_graph.open(endpoint)
@@ -338,18 +341,37 @@ class EndPointKGQueryInterfaceExtended(KGQueryInterfaceExtended):
         self.type = 'remote'
 
     def close(self):
+        self.session.close()
         super().close()
 
     def execute(self, query):
-        self.sparql.setQuery(query)
-        self.sparql.setReturnFormat(JSON)
-        results = self.sparql.query().convert()
-        # target_vars=[var[1:] for var in target_vars]+['c']
+        # self.sparql.setQuery(query)
+        # self.sparql.setReturnFormat(JSON)
+        # self.sparql.setMethod('GET')
+        # results = self.sparql.queryAndConvert()
+        # # target_vars=[var[1:] for var in target_vars]+['c']
+        # vars = results["head"]["vars"]
+        params = {
+            'query' : query,
+            'format' : 'json',
+            'timeout': 0
+             # run = +Run + Query +
+        }
+
+        results = self.session.get(self.endpoint, params=params)
+
+
+        if results.status_code != 200:
+            logger.error('sparql query returned an error %r' %results)
+            raise Exception(results)
+
+        results = results.json()
         vars = results["head"]["vars"]
 
         results_formatted = [[result[var]["value"] for var in vars] for result in results["results"]["bindings"]]
         logger.debug(results)
         logger.debug(results_formatted)
+
         return results_formatted
 
 
