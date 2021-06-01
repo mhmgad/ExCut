@@ -29,7 +29,7 @@ Easy way to run Virtouso is using docker container as provided in `docker-compos
 2. Run command: `docker compose up`
 
 Alternatively, The tool can be downloaded from [Virtouso 7.2 Community](https://github.com/openlink/virtuoso-opensource/releases).
-Then 'SPARQL_UPDATE' permission should be assigned to the SPARQL endpoint. (Details can be found here!)[https://stackoverflow.com/questions/40897307/authentication-for-virtuoso-http-post-put]
+Then 'SPARQL_UPDATE' permission should be assigned to the SPARQL endpoint. [Details can be found here!](https://stackoverflow.com/questions/40897307/authentication-for-virtuoso-http-post-put)
 
 
 
