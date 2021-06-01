@@ -235,6 +235,13 @@ These are some important modules while developing in ExCut:
     * Module `.eval_utils` Some useful scripts for evaluation such as exporting to csv and ploting.
     
 
+## Contact
+
+Please Contact gadelrab [at] mpi-inf.mpg.de for further questions
+
+## License
+
+ExCut is open-sourced under the Apache 2.0 license. See the [LICENSE](LICENSE) file for details.
 
 
 
