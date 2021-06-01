@@ -2,6 +2,8 @@
 
 Computing robust explainable clusters for a set of entities. Clusters' explanations are produced based on the facts surrounding these entities in the KG. Furthermore, ExCut reuses the explanations to enhance the clustering quality.
 
+Technical and experimental details can be found in ExCut's Technical Report: https://mpi-inf.mpg.de/~gadelrab/downloads/ExCut/ExCut_TR.pdf
+
 ## Build
 
 ### 1) Environment
