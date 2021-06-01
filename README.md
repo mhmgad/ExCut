@@ -235,45 +235,6 @@ These are some important modules while developing in ExCut:
     * Module `.eval_utils` Some useful scripts for evaluation such as exporting to csv and ploting.
     
 
-## Contributing
-
-You are very welcome to contribute! Just open a Pull Request.
-
-### Pre-Commit Hooks
-
-We use [pre-commit](https://pre-commit.com/) for "identifying simple issues before
-submission to code review". See [here](https://hostthedocs-bcai.de.bosch.com/sample/latest/pages/localdevelopment.html#pre-commit-hooks)
-for more.
-
-To install the hooks from `.pre-commit-config.yaml`, you once have to run
-
-    pre-commit install
-
-
-## About
-
-### Maintainers
-
-[Mohamed Gad-Elrab](mailto:mohamed.gad-elrab@de.bosch.com)
-
-### Contributors
-
-### License
-
-Copyright (c) 2020 Robert Bosch GmbH and its subsidiaries.
-
-
-
-
-## Note
-
-This is based on Python Sample Project of BCAI’s
-[Software Quality Initiative](https://inside-docupedia.bosch.com/confluence/display/BSE/Software+Quality+Initiative).
-It is an adaption of the Python Packaging Authority's (PyPA)
-[Sample Project](https://github.com/pypa/sampleproject), and prepared to use BCAI's software development infrastructure.
-
-
-
 
 
 
