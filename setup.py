@@ -12,5 +12,13 @@ setup_params = dict(name='ampligraph',
                     include_package_data=True,
                     zip_safe=False,
                     install_requires=[
-                      
+                      "scikit-learn",
+                      "tqdm",
+                      "pandas",
+                      "sparqlwrapper",
+                      "rdflib=4.2.2",
+                      "matplotlib",
+                      "tensorflow=1.13.1",
+                      "keras",
+                      "ampligraph==1.3.0"
                     ])
