@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
-from ampligraph import __version__ as version
+
 
 setup_params = dict(name='ampligraph',
-                    version=version,
+                    version='0.9',
                     description='ExCut: A Python library for Explainable Entity Clustering',
                     url='https://github.com/mhmgad/ExCut',
                     author='Mohamed Gad-Elrab',
